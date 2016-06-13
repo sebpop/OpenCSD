@@ -301,6 +301,14 @@
 				};
 			};
 
+			port@3 {
+				reg = <2>;
+				main_funnel_in_port2: endpoint {
+					slave-mode;
+					remote-endpoint = <&stm_out_port>;
+				};
+			};
+
 		};
 	};
 
@@ -472,6 +480,21 @@
 		port {
 			A53_etm3_out_port: endpoint {
 				remote-endpoint = <&A53_funnel_in_port3>;
+			};
+		};
+	};
+
+	stm@20100000 {
+		compatible = "arm,coresight-stm", "arm,primecell";
+		reg = <0 0x20100000 0 0x1000>,
+		      <0 0x28000000 0 0x180000>;
+		reg-names = "stm-base", "stm-stimulus-base";
+
+		clocks = <&soc_smc50mhz>;
+		clock-names = "apb_pclk";
+		port {
+			stm_out_port: endpoint {
+				remote-endpoint = <&main_funnel_in_port2>;
 			};
 		};
 	};
