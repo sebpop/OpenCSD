@@ -47,6 +47,7 @@ static const char *s_elem_descs[][2] =
     {"OCSD_GEN_TRC_ELEM_PE_CONTEXT","PE status update / change (arch, ctxtid, vmid etc)."},
     {"OCSD_GEN_TRC_ELEM_INSTR_RANGE","Traced N consecutive instructions from addr (no intervening events or data elements), may have data assoc key"},
     {"OCSD_GEN_TRC_ELEM_ADDR_NACC","Tracing in inaccessible memory area."},
+    {"OCSD_GEN_TRC_ELEM_ADDR_UNKNOWN","Trace address currently unknown - need address packet update."},
     {"OCSD_GEN_TRC_ELEM_EXCEPTION","Exception"},
     {"OCSD_GEN_TRC_ELEM_EXCEPTION_RET","Expection return"},
     {"OCSD_GEN_TRC_ELEM_TIMESTAMP","Timestamp - preceding elements happeded before this time."},

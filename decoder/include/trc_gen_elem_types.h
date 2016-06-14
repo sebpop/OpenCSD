@@ -53,6 +53,7 @@ typedef enum _ocsd_gen_trc_elem_t
     OCSD_GEN_TRC_ELEM_PE_CONTEXT,      /*!< PE status update / change (arch, ctxtid, vmid etc).  */
     OCSD_GEN_TRC_ELEM_INSTR_RANGE,     /*!< traced N consecutive instructions from addr (no intervening events or data elements), may have data assoc key  */
     OCSD_GEN_TRC_ELEM_ADDR_NACC,       /*!< tracing in inaccessible memory area  */ 
+    OCSD_GEN_TRC_ELEM_ADDR_UNKNOWN,    /*!< address currently unknown - need address packet update */
     OCSD_GEN_TRC_ELEM_EXCEPTION,       /*!< exception - trace range executed up to an exception occurring */
     OCSD_GEN_TRC_ELEM_EXCEPTION_RET,   /*!< expection return */
     OCSD_GEN_TRC_ELEM_TIMESTAMP,       /*!< Timestamp - preceding elements happeded before this time. */
