@@ -298,6 +298,54 @@ Instruction     13570831        0x8026B584      E28DD00C        false   ADD     
 Instruction     0       0x8026B588      E8BD8000        true    LDM      sp!,{pc}
 Timestamp                                       Timestamp: 17107041535
 
+Address filtering
+-----------------
+
+CoreSight tracers produce an astonishing amount of traces, more often than not
+much more than trace buffers can handle, and definilty far beyond the
+processing capabilities of humans.  To trim down the amount of trace generated
+address filters can be specified from the perf command line.
+
+Currently supported filters include range and start/stop address.  When a
+range is specified traces will be collected when the instruction pointer falls
+within the specified addresses.  For start and stop filters, traces collection
+start when the instuction pointer matches the start address, and stop when
+the stop address has been reached.
+
+Filters can be specified from the perf command line as follow:
+
+- To start trace collection when the IP equal a specific function in a binary
+  executable or library:
+
+	perf record -e cs_etm// --filter 'start 0x72c@/opt/lib/libcstest.so.1.0' --per-thread ./main
+
+- To stop trace collection when the IP equal a specific function in a binary
+  executable of library:
+
+	perf record -e cs_etm// --filter 'stop 0x790@/opt/lib/libcstest.so.1.0' --per-thread ./main
+
+- To start and stop tracing at various stages of kernel execution:
+
+	perf record -e cs_etm// --filter 'start 0xffffff800856bc50,stop 0xffffff800856bcb0,start 0xffffff8008562d0c,stop 0xffffff8008562d30' --per-thread uname
+
+The only requirement on the number of start/stop filters is that they don't go
+beyond the amount of comparator implemented on the system.  Range filters are
+specified using a slightly different syntax:
+
+- To collect traces in a specific range in a binary executable or a library:
+
+	perf record -e cs_etm// --filter 'filter 0x72c/0x40@/opt/lib/libcstest.so.1.0' --per-thread ./main
+
+- To collect traces in a specific range in kernel space:
+
+	perf record -e cs_etm// --filter 'filter 0xffffff8008562d0c/0x48' --per-thread  uname
+
+This time the number of comparator _pairs_ implemented in the trace engine is
+the only restriction on the amount of filters that can be specified.
+
+It is possible to mix user and kernel space filters, as long as they are the
+same type.  Mixing range and start/stop filters is currently not supported.
+
 How to use the STM module
 -------------------------
 
