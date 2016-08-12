@@ -60,7 +60,7 @@ the `*.md` files as part of the documentation.
 Building the Library
 --------------------
 
-See [build_libs.md](@ref build_lib) in the `./docs` directory for build details.
+See [build_libs.md](https://github.com/Linaro/OpenCSD/blob/master/decoder/docs/build_libs.md) in the `./docs` directory for build details.
 
 
 How the Library is used in Linux `perf`
@@ -69,7 +69,7 @@ The library and additional infrastructure for programming CoreSight components h
 with the standard linux perfomance analysis tool `perf`.
 
 
-See [HOWTO.md](@ref howto_perf) for details.
+See [HOWTO.md](https://github.com/Linaro/OpenCSD/blob/opencsd-0v003/HOWTO.md) for details.
 
 
 Version and Modification Information
